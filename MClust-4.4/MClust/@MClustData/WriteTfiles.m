@@ -65,12 +65,15 @@ for iC = 1:nClust
       tSpikes = MCD.FeatureTimestamps(spikes);
       
       if ismember(iC, underscoreTclusters)
-          fn = [MCD.TfileBaseName(iC) '._' MCS.tEXT];
+          fn = [MCD.TfileBaseName(iC) '._' 'mat'];
       else
-          fn = [MCD.TfileBaseName(iC) '.' MCS.tEXT];
+          fn = [MCD.TfileBaseName(iC) '.' 'mat'];
       end            
+      save(fn, 'tSpikes');
+      continue
       
-      fp = fopen(fn, 'wb', 'b');
+%       fp = fopen(fn, 'wb', 'b');
+        fp = fopen(fn, 'w');
       if (fp == -1)
          errordlg(['Could not open file"' fn '".']);
       end
@@ -83,14 +86,14 @@ for iC = 1:nClust
           case 'raw64'
               tSpikes = uint64(tSpikes); % 
               fwrite(fp, tSpikes, 'uint64');              
-          case 't64'
+          case 't64' % t64
               tSpikes = uint64(tSpikes*10000); % converts to 0.1 ms, but saves as 64bit 
               fwrite(fp, tSpikes, 'uint64');
           case 'raw32'
               tSpikes = uint32(tSpikes); % 
               fwrite(fp, tSpikes, 'uint32');                            
           case 't32'
-              tSpikes = uint32(tSpikes*10000); % NEED TO CONVERT TO NEURALYNX's .t format save in integers of 0.1ms
+              tSpikes = uint32(tSpikes*10000); % NEED TO jCONVERT TO NEURALYNX's .t format save in integers of 0.1ms
               fwrite(fp, tSpikes, 'uint32');
           case 't'
               tSpikes = uint32(tSpikes*10000); % NEED TO CONVERT TO NEURALYNX's .t format save in integers of 0.1ms

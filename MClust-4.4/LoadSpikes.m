@@ -41,7 +41,8 @@ for iF = 1:nFiles
     [fd, fn, xt] = fileparts(tfn);
     
 	if ~isempty(tfn)
-		tfp = fopen(tfn, 'rb','b');
+% 		tfp = fopen(tfn, 'rb','b');
+        tfp = fopen(tfn, 'r');
 		if (tfp == -1)
 			warning('MClust:LoadSpikes', 'Could not open tfile %s.', tfn);
 		end
