@@ -24,8 +24,8 @@ end
 
 self.FocusOnAxes();
 
-[xg,yg] = ginput();
-%[xg,yg] = ginputSmooth();
+% [xg,yg] = ginput();
+[xg,yg] = ginputSmooth();
 
 xg = [xg;xg(1)]; 
 yg = [yg;yg(1)];
