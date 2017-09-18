@@ -15,7 +15,8 @@ function MClust
 %---------------------------------
 % Check if instance exists
 if any(strcmp(who('global'), 'MClustInstance'))
-    error('MClust:Initialize', 'MClust is already running.');
+    warning('MClust:Initialize', 'MClust is already running.');
+    return
 end
 
 global MClustInstance
