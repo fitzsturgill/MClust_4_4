@@ -67,7 +67,8 @@ end
 load(fn); % loads structure spikes into local workspace
 
 wv = spikes.waveforms;
-t = spikes.unwrapped_times;
+% t = spikes.unwrapped_times;
+t = spikes.nlx_times;
 clear spikes; % free up memory
 
 
