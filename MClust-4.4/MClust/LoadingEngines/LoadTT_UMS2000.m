@@ -71,7 +71,7 @@ wv = spikes.waveforms;
 try
     t = spikes.nlx_times;
 catch
-    t = spikes.unwrapped_times;
+    t = double(spikes.unwrapped_times) + spikes.startRecording;
 end
 clear spikes; % free up memory
 
